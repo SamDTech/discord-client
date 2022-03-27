@@ -20,8 +20,8 @@ apiClient.interceptors.request.use(
       if (config.headers) {
         config.headers!.Authorization = `Bearer ${token}`;
       }
-      return config;
     }
+    return config;
   },
   (error: any) => {
     return Promise.reject(error);

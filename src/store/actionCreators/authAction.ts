@@ -13,9 +13,12 @@ interface ILoginDetails {
 export const loginUser =
   (loginDetails: ILoginDetails, navigate: NavigateFunction) =>
   async (dispatch: Dispatch<Action>) => {
+    console.log("loginUser");
     dispatch({ type: ActionType.USER_LOGIN_REQUEST });
     try {
       const { data } = await apiClient.post("/auth/login", loginDetails);
+
+      console.log(data)
 
       dispatch({ type: ActionType.USER_LOGIN_SUCCESS, payload: data });
 
@@ -23,6 +26,7 @@ export const loginUser =
 
       navigate("/dashboard");
     } catch (error: any) {
+      console.log(error);
       dispatch({
         type: ActionType.OPEN_ALERT_MESSAGE,
         payload:
