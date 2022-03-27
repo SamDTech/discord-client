@@ -3,7 +3,10 @@ import React, { useState, useEffect } from "react";
 import AuthBox from "../../components/AuthBox";
 import RegisterPageFooter from "../../components/RegisterPageFooter";
 import RegisterPageInput from "../../components/RegisterPageInput";
+import { registerUser } from "../../store/actionCreators/authAction";
 import { validateRegisterForm } from "../../utils/validator";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [mail, setMail] = useState("");
@@ -11,14 +14,15 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
     setIsFormValid(validateRegisterForm(mail, password, username));
   }, [setIsFormValid, mail, password, username]);
 
   const handleRegister = () => {
-    console.log(mail);
-    console.log(password);
-    console.log(username);
+    dispatch(registerUser({ email: mail, password, username }, navigate));
   };
 
   return (

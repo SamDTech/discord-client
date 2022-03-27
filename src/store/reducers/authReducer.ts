@@ -1,4 +1,4 @@
-import { ActionType } from '../actionTypes';
+import { ActionType } from "../actionTypes";
 
 const initialState = {
   userInfo: null,
@@ -6,11 +6,11 @@ const initialState = {
 };
 
 interface Action {
-    type: string;
-    payload: any;
+  type: string;
+  payload: any;
 }
 
-export const authReducer = (state = initialState, action: Action) => {
+export const loginReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case ActionType.USER_LOGIN_REQUEST:
       return { loading: true };
@@ -26,5 +26,5 @@ export const authReducer = (state = initialState, action: Action) => {
 
     default:
       return state;
-}
+  }
 };
