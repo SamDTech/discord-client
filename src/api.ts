@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
+import { logout } from "./utils/auth";
 
 export const apiClient = axios.create({
   baseURL: "http://localhost:5000/api",
@@ -10,29 +11,18 @@ export const apiClient = axios.create({
   },
 });
 
-export const login = async (prop: { email: string; password: string }) => {
-  try {
-    const { data } = await apiClient.post("/auth/login", prop);
-    return data.token;
-  } catch (exeption: any) {
-    return {
-      error: true,
-      exeption,
-    };
-  }
-};
+apiClient.interceptors.request.use((config: AxiosRequestConfig) => {
+  const user = localStorage.getItem("userInfo");
+  if (user) {
+    const { token } = JSON.parse(user);
 
-export const register = async (data: {
-  mail: string;
-  password: string;
-  username: string;
-}) => {
-  try {
-    return await apiClient.post("/auth/register", data);
-  } catch (exeption: any) {
-    return {
-      error: true,
-      exeption,
-    };
+    if (config.headers) {
+      config.headers!.Authorization = `Bearer ${token}`;
+    }
   }
+});
+
+const checkStatus = (exeption: any) => {
+  if (exeption.response.status === 401 || exeption.response.status === 403)
+    logout();
 };
