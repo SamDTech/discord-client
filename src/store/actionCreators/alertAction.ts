@@ -1,6 +1,6 @@
 import { ActionType } from "./../actionTypes/index";
 import { Dispatch } from "redux";
-import { apiClient } from "../../api";
+
 import { Action } from "../actions";
 
 export const openAlert =
