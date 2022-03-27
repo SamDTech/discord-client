@@ -1,6 +1,7 @@
 import { Box, Tooltip, Typography } from "@mui/material";
 import React, { useState } from "react";
 import Avartar from "./Avartar";
+import InvitationDecisionsButton from "./InvitationDecisionsButton";
 
 interface IPendingInvitationsListItemProps {
   id: number;
@@ -63,6 +64,12 @@ const PendingInvitationsListItem: React.FC<{
           >
             {username}
           </Typography>
+
+          <InvitationDecisionsButton
+            disabled={buttonsDisabled}
+            acceptInvitationHandler={handleAcceptFriendInvitation}
+            rejectInvitationHandler={handleRejectFriendInvitation}
+          />
         </Box>
       </div>
     </Tooltip>
