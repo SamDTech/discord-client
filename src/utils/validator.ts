@@ -9,7 +9,7 @@ const validatePassword = (password: string) => {
   return password.length > 5 && password.length < 32;
 };
 
-const validateMail = (email: string) => {
+export const validateMail = (email: string) => {
   return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
 };
 
