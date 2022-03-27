@@ -3,6 +3,7 @@ import { Dispatch } from "redux";
 import { apiClient } from "../../api";
 import { Action } from "../actions";
 import { NavigateFunction } from "react-router-dom";
+import { openAlert } from "./alertAction";
 
 interface ILoginDetails {
   email: string;
@@ -22,6 +23,13 @@ export const loginUser =
 
       navigate("/dashboard");
     } catch (error: any) {
+      dispatch({
+        type: ActionType.OPEN_ALERT_MESSAGE,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
       dispatch({
         type: ActionType.USER_LOGIN_FAIL,
         payload:
@@ -51,6 +59,11 @@ export const registerUser =
       navigate("/");
     } catch (error: any) {
       console.log(error);
+      openAlert(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      );
 
       dispatch({
         type: ActionType.USER_LOGIN_FAIL,
