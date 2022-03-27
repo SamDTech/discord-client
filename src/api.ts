@@ -11,16 +11,22 @@ export const apiClient = axios.create({
   },
 });
 
-apiClient.interceptors.request.use((config: AxiosRequestConfig) => {
-  const user = localStorage.getItem("userInfo");
-  if (user) {
-    const { token } = JSON.parse(user);
+apiClient.interceptors.request.use(
+  (config: AxiosRequestConfig) => {
+    const user = localStorage.getItem("userInfo");
+    if (user) {
+      const { token } = JSON.parse(user);
 
-    if (config.headers) {
-      config.headers!.Authorization = `Bearer ${token}`;
+      if (config.headers) {
+        config.headers!.Authorization = `Bearer ${token}`;
+      }
+      return config;
     }
+  },
+  (error: any) => {
+    return Promise.reject(error);
   }
-});
+);
 
 const checkStatus = (exeption: any) => {
   if (exeption.response.status === 401 || exeption.response.status === 403)

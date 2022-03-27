@@ -1,8 +1,24 @@
+import { styled } from '@mui/system'
 import React from 'react'
+import AppBar from '../components/AppBar'
+import FriendSidebar from '../components/FriendSidebar'
+import Messenger from '../components/Messenger'
+import Sidebar from '../components/Sidebar'
+
+const Wrapper = styled('div')({
+  width: '100%',
+  height: '100vh',
+  display: 'flex',
+})
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <Wrapper>
+      <Sidebar />
+      <FriendSidebar />
+      <Messenger />
+      <AppBar />
+    </Wrapper>
   )
 }
 
