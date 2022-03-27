@@ -1,6 +1,7 @@
 import { Button, Typography } from "@mui/material";
 import React from "react";
 import Avartar from "./Avartar";
+import OnlineIndicator from "./OnlineIndicator";
 
 interface IFriendListItemProps {
   id: number;
@@ -37,6 +38,8 @@ const FriendListItem: React.FC<{ friend: IFriendListItemProps }> = ({
       >
         {username}
       </Typography>
+
+      {isOnline && <OnlineIndicator />}
     </Button>
   );
 };
