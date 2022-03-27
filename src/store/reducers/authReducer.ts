@@ -21,6 +21,9 @@ export const authReducer = (state = initialState, action: Action) => {
     case ActionType.USER_LOGIN_FAIL:
       return {...state, loading: false, error: action.payload };
 
+    case ActionType.SET_USER_DETAILS:
+      return {...state, userInfo: action.payload };
+
     // case LOGOUT:
     //   return {};
 

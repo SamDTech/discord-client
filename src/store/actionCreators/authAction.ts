@@ -18,7 +18,7 @@ export const loginUser =
     try {
       const { data } = await apiClient.post("/auth/login", loginDetails);
 
-      console.log(data)
+      console.log(data);
 
       dispatch({ type: ActionType.USER_LOGIN_SUCCESS, payload: data });
 
@@ -78,3 +78,8 @@ export const registerUser =
       });
     }
   };
+
+const setUserDetails = (userDetails: any) => ({
+  type: ActionType.SET_USER_DETAILS,
+  payload: userDetails,
+});

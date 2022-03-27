@@ -30,6 +30,11 @@ interface RegisterActionFail {
   payload: string;
 }
 
+interface SetUserDetails {
+  type: ActionType.SET_USER_DETAILS;
+  payload: any;
+}
+
 interface LogOutAction {
   type: ActionType.LOGOUT;
 }
@@ -46,4 +51,5 @@ export type Action =
   | RegisterActionSuccess
   | RegisterActionFail
   | LogOutAction
+  | SetUserDetails
   | OpenAlertMessage;
