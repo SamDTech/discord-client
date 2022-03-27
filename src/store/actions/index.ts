@@ -1,4 +1,4 @@
-import { User } from './../../../types';
+import { User } from "./../../../types";
 
 import { ActionType } from "../actionTypes";
 
@@ -8,11 +8,25 @@ interface LoginActionRequest {
 
 interface LoginActionSuccess {
   type: ActionType.USER_LOGIN_SUCCESS;
-  payload: User;
+  payload: string;
 }
 
 interface LoginActionFail {
   type: ActionType.USER_LOGIN_FAIL;
+  payload: string;
+}
+
+interface RegisterActionRequest {
+  type: ActionType.USER_REGISTER_REQUEST;
+}
+
+interface RegisterActionSuccess {
+  type: ActionType.USER_REGISTER_SUCCESS;
+  payload: string;
+}
+
+interface RegisterActionFail {
+  type: ActionType.USER_REGISTER_FAIL;
   payload: string;
 }
 
@@ -49,6 +63,9 @@ export type Action =
   | LoginActionRequest
   | LoginActionSuccess
   | LoginActionFail
+  | RegisterActionRequest
+  | RegisterActionSuccess
+  | RegisterActionFail
   | LogOutAction
   | SearchQueryAction
   | AddToCart

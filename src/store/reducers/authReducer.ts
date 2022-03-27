@@ -1,5 +1,8 @@
+import { ActionType } from '../actionTypes';
+
 const initialState = {
-  user: null,
+  userInfo: null,
+  loading: false,
 };
 
 interface Action {
@@ -9,22 +12,19 @@ interface Action {
 
 export const authReducer = (state = initialState, action: Action) => {
   switch (action.type) {
-    case "SET_AUTHENTICATED":
-      return {
-        ...state,
-        authenticated: true,
-      };
-    case "SET_UNAUTHENTICATED":
-      return {
-        ...state,
-        authenticated: false,
-      };
-    case "SET_USER":
-      return {
-        ...state,
-        user: action.payload,
-      };
+    case ActionType.USER_LOGIN_REQUEST:
+      return { loading: true };
+
+    case ActionType.USER_LOGIN_SUCCESS:
+      return { loading: false, userInfo: action.payload };
+
+    case ActionType.USER_LOGIN_FAIL:
+      return { loading: false, error: action.payload };
+
+    // case LOGOUT:
+    //   return {};
+
     default:
       return state;
-  }
+}
 };

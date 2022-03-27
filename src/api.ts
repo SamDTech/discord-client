@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiClient = axios.create({
+export const apiClient = axios.create({
   baseURL: "http://localhost:5000",
   timeout: 1000,
   withCredentials: false, // This is the default
@@ -10,9 +10,10 @@ const apiClient = axios.create({
   },
 });
 
-export const login = async(data: { mail: string; password: string }) => {
+export const login = async (prop: { email: string; password: string }) => {
   try {
-    return await apiClient.post("/auth/login", data);
+    const {data} = await apiClient.post<{ token: string }>("/auth/login", prop);
+    return data.token;
   } catch (exeption: any) {
     return {
       error: true,
@@ -21,9 +22,11 @@ export const login = async(data: { mail: string; password: string }) => {
   }
 };
 
-
-
-export const register = async (data: { mail: string; password: string, username: string }) => {
+export const register = async (data: {
+  mail: string;
+  password: string;
+  username: string;
+}) => {
   try {
     return await apiClient.post("/auth/register", data);
   } catch (exeption: any) {
