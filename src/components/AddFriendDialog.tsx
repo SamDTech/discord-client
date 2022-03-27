@@ -1,5 +1,6 @@
 import {
   Dialog,
+  DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
@@ -7,6 +8,7 @@ import {
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { validateMail } from "../utils/validator";
+import CustomPrimaryButton from "./CustomPrimaryButton";
 import InputWithLabel from "./InputWithLabel";
 
 interface IAddFriendDialogProps {
@@ -40,14 +42,12 @@ const AddFriendDialog: React.FC<IAddFriendDialogProps> = ({
     <div>
       <Dialog open={isDialogOpen} onClose={handleCloseDialog}>
         <DialogTitle>
-          <Typography >
-            Invite A Friend{" "}
-          </Typography>
+          <Typography>Invite A Friend </Typography>
         </DialogTitle>
 
         <DialogContent>
           <DialogContentText>
-            <Typography  >
+            <Typography>
               Enter Email Address of friend you will like to invite.
             </Typography>
           </DialogContentText>
@@ -59,6 +59,18 @@ const AddFriendDialog: React.FC<IAddFriendDialogProps> = ({
             placeholder="Enter Email Address"
           />
         </DialogContent>
+        <DialogActions>
+          <CustomPrimaryButton
+            onClick={handleSendInvitation}
+            disabled={!isFormValid}
+            label="Send Invitation"
+            additionalStyles={{
+                marginLeft: "15px",
+                marginRight: "15px",
+                marginBottom: "10px",
+            }}
+          />
+        </DialogActions>
       </Dialog>
     </div>
   );
