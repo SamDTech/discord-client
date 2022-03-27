@@ -8,6 +8,7 @@ import {
 import Login from "./pages/authPages/Login";
 import Register from "./pages/authPages/Register";
 import Dashboard from "./pages/Dashboard";
+import AlertNotification from "./components/AlertNotification";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="*" element={<Navigate to="/dashboard" />} />
         </Routes>
       </Router>
+      <AlertNotification />
     </>
   );
 }

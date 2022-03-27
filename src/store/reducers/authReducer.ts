@@ -10,16 +10,16 @@ interface Action {
   payload: any;
 }
 
-export const loginReducer = (state = initialState, action: Action) => {
+export const authReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case ActionType.USER_LOGIN_REQUEST:
-      return { loading: true };
+      return {...state, loading: true };
 
     case ActionType.USER_LOGIN_SUCCESS:
-      return { loading: false, userInfo: action.payload };
+      return {...state, loading: false, userInfo: action.payload };
 
     case ActionType.USER_LOGIN_FAIL:
-      return { loading: false, error: action.payload };
+      return {...state, loading: false, error: action.payload };
 
     // case LOGOUT:
     //   return {};

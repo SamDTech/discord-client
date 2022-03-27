@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export const apiClient = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "http://localhost:5000/api",
   timeout: 1000,
-  withCredentials: false, // This is the default
+
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
@@ -12,7 +12,7 @@ export const apiClient = axios.create({
 
 export const login = async (prop: { email: string; password: string }) => {
   try {
-    const {data} = await apiClient.post<{ token: string }>("/auth/login", prop);
+    const { data } = await apiClient.post("/auth/login", prop);
     return data.token;
   } catch (exeption: any) {
     return {

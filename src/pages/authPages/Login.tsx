@@ -5,8 +5,9 @@ import LoginPageHeader from "../../components/LoginPageHeader";
 import LoginPageInput from "../../components/LoginPageInput";
 import { validateLoginForm } from "../../utils/validator";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../store/actionCreators/authAction";
+
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../store/actionCreators/authAction";
 
 const Login = () => {
   const [mail, setMail] = useState("");

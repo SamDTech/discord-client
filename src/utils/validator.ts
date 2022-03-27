@@ -6,7 +6,7 @@ export const validateLoginForm = (mail: string, password: string) => {
 };
 
 const validatePassword = (password: string) => {
-  return password.length > 6 && password.length < 32;
+  return password.length > 5 && password.length < 32;
 };
 
 const validateMail = (email: string) => {

@@ -20,7 +20,7 @@ export const loginUser =
 
       localStorage.setItem("userInfo", JSON.stringify(data));
 
-      navigate("/login");
+      navigate("/dashboard");
     } catch (error: any) {
       dispatch({
         type: ActionType.USER_LOGIN_FAIL,
@@ -42,12 +42,16 @@ export const registerUser =
     try {
       const { data } = await apiClient.post("/auth/register", registerDetails);
 
+      console.log(data);
+
       dispatch({ type: ActionType.USER_LOGIN_SUCCESS, payload: data });
 
       localStorage.setItem("userInfo", JSON.stringify(data));
 
       navigate("/");
     } catch (error: any) {
+      console.log(error);
+
       dispatch({
         type: ActionType.USER_LOGIN_FAIL,
         payload:
