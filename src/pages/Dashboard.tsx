@@ -5,6 +5,7 @@ import AppBar from "../components/AppBar";
 import FriendSidebar from "../components/FriendSidebar";
 import Messenger from "../components/Messenger";
 import Sidebar from "../components/Sidebar";
+import { connectWithSocketServer } from "../realtimeCommunication/socketConnection";
 import { logout } from "../utils/auth";
 
 const Wrapper = styled("div")({
@@ -27,6 +28,9 @@ const Dashboard = () => {
         type: "SET_USER_DETAILS",
         payload: JSON.parse(user),
       });
+
+      // connect to socket
+      connectWithSocketServer()
     }
   }, [dispatch]);
 
