@@ -30,7 +30,7 @@ const Dashboard = () => {
       });
 
       // connect to socket
-      connectWithSocketServer()
+      connectWithSocketServer(JSON.parse(user));
     }
   }, [dispatch]);
 
