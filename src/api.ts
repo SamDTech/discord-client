@@ -28,7 +28,7 @@ apiClient.interceptors.request.use(
   }
 );
 
-const checkStatus = (exeption: any) => {
+export const checkStatus = (exeption: any) => {
   if (exeption.response.status === 401 || exeption.response.status === 403)
     logout();
 };
