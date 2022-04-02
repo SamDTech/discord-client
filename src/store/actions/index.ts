@@ -43,6 +43,20 @@ interface OpenAlertMessage {
   type: ActionType.OPEN_ALERT_MESSAGE;
 }
 
+interface SetFriends {
+  type: ActionType.SET_FRIENDS;
+  payload: any;
+}
+interface SetPendingFriendsInvitations {
+  type: ActionType.SET_PENDING_FRIENDS_INVITATIONS;
+  payload: any;
+}
+
+interface SetOnlineUsers {
+  type: ActionType.SET_ONLINE_USERS;
+  payload: any;
+}
+
 export type Action =
   | LoginActionRequest
   | LoginActionSuccess
@@ -52,4 +66,7 @@ export type Action =
   | RegisterActionFail
   | LogOutAction
   | SetUserDetails
-  | OpenAlertMessage;
+  | OpenAlertMessage
+  | SetFriends
+  | SetPendingFriendsInvitations
+  | SetOnlineUsers;
