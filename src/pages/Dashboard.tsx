@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AppBar from "../components/AppBar";
 import FriendSidebar from "../components/FriendSidebar";
 import Messenger from "../components/Messenger";
+
 import Sidebar from "../components/Sidebar";
 import { connectWithSocketServer } from "../realtimeCommunication/socketConnection";
 import { logout } from "../utils/auth";
@@ -38,7 +39,7 @@ const Dashboard = () => {
     <Wrapper>
       <Sidebar />
       <FriendSidebar />
-      <Messenger />
+      <Messenger/>
       <AppBar />
     </Wrapper>
   );

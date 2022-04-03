@@ -59,9 +59,12 @@ interface SetOnlineUsers {
 
 interface SetActiveConversation {
   type: ActionType.SET_ACTIVE_CONVERSATION;
-  payload: any;
+  payload: {
+    _id: string;
+    username: string;
+    chatType: string;
+  };
 }
-
 
 interface SetChatMessages {
   type: ActionType.SET_CHAT_MESSAGES;

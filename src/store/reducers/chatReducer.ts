@@ -1,5 +1,11 @@
 import { ActionType } from "../actionTypes";
 
+interface ChosenPayload {
+  _id: string;
+  username: string;
+  chatType: string;
+}
+
 const initialState = {
   chosenChatDetails: null,
   chatType: null,
@@ -8,7 +14,11 @@ const initialState = {
 
 interface Action {
   type: string;
-  payload: any;
+  payload: {
+    _id: string;
+    username: string;
+    chatType: string;
+  };
 }
 
 export const chatReducer = (state = initialState, action: Action) => {
@@ -17,7 +27,7 @@ export const chatReducer = (state = initialState, action: Action) => {
       return {
         ...state,
         chosenChatDetails: {
-          id: action.payload._id,
+          _id: action.payload._id,
           username: action.payload.username,
         },
         chatType: action.payload.chatType,
