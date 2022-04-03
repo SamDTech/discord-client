@@ -57,6 +57,22 @@ interface SetOnlineUsers {
   payload: any;
 }
 
+interface SetActiveConversation {
+  type: ActionType.SET_ACTIVE_CONVERSATION;
+  payload: any;
+}
+
+
+interface SetChatMessages {
+  type: ActionType.SET_CHAT_MESSAGES;
+  payload: any;
+}
+
+interface SetChatType {
+  type: ActionType.SET_CHAT_TYPE;
+  payload: any;
+}
+
 export type Action =
   | LoginActionRequest
   | LoginActionSuccess
@@ -69,4 +85,7 @@ export type Action =
   | OpenAlertMessage
   | SetFriends
   | SetPendingFriendsInvitations
-  | SetOnlineUsers;
+  | SetOnlineUsers
+  | SetChatMessages
+  | SetChatType
+  | SetActiveConversation;
