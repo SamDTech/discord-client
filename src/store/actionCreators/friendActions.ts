@@ -34,9 +34,10 @@ export const sendFriendInvitation =
 
 export const setPendingFriendsInvitation =
   (friendsInvitation: any) => async (dispatch: Dispatch<Action>) => {
-    dispatch({ type: ActionType.USER_LOGIN_REQUEST });
+      console.log(`setPendingFriendsInvitation`, friendsInvitation);
+
     try {
-      dispatch({
+      dispatch<any>({
         type: ActionType.SET_PENDING_FRIENDS_INVITATIONS,
         payload: friendsInvitation,
       });

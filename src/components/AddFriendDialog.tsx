@@ -31,6 +31,7 @@ const AddFriendDialog: React.FC<IAddFriendDialogProps> = ({
 
   const handleSendInvitation = () => {
     dispatch(sendFriendInvitation(email, closeDialogHandler));
+    setEmail("");
   };
 
   const handleCloseDialog = () => {

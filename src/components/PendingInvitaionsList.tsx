@@ -1,32 +1,8 @@
 import { styled } from "@mui/system";
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/reducers";
 import PendingInvitationsListItem from "./PendingInvitationsListItem";
-
-const DummyInvitaion = [
-  {
-    id: 1,
-    senderId: {
-      username: "johndoe",
-      email: "john@gmail.com",
-    },
-  },
-
-  {
-    id: 2,
-    senderId: {
-      username: "johndoe",
-      email: "john@gmail.com",
-    },
-  },
-
-  {
-    id: 3,
-    senderId: {
-      username: "johndoe",
-      email: "john@gmail.com",
-    },
-  },
-];
 
 const MainContainer = styled("div")({
   height: "22%",
@@ -38,12 +14,16 @@ const MainContainer = styled("div")({
 });
 
 const PendingInvitaionsList = () => {
- const handleAcceptFriendInvitation = (id: number) => {}
+  const { pendingFriendsInvitations } = useSelector(
+    (state: RootState) => state.friends
+  );
 
- const handleRejectFriendInvitation = (id: number) => {}
+  const handleAcceptFriendInvitation = (id: number) => {};
+
+  const handleRejectFriendInvitation = (id: number) => {};
   return (
     <MainContainer>
-      {DummyInvitaion.map((invitaion) => {
+      {pendingFriendsInvitations.map((invitaion: any) => {
         return (
           <PendingInvitationsListItem
             key={invitaion.id}
