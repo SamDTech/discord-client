@@ -4,13 +4,13 @@ import Avartar from "./Avartar";
 import OnlineIndicator from "./OnlineIndicator";
 
 interface IFriendListItemProps {
-  id: number;
+  _id: number;
   username: string;
   isOnline: boolean;
 }
 
 const FriendListItem: React.FC<{ friend: IFriendListItemProps }> = ({
-  friend: { id, username, isOnline },
+  friend: { _id, username, isOnline },
 }) => {
   return (
     <Button
@@ -27,6 +27,7 @@ const FriendListItem: React.FC<{ friend: IFriendListItemProps }> = ({
       }}
     >
       <Avartar username={username} />
+      
       <Typography
         sx={{
           marginLeft: "7px",

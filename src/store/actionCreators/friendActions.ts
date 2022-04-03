@@ -49,6 +49,38 @@ export const setPendingFriendsInvitation =
     }
   };
 
+ export const setOnlineUsers = (onlineUsers: any) => async (dispatch: Dispatch<Action>) => {
+    try {
+        dispatch<any>({
+            type: ActionType.SET_ONLINE_USERS,
+            payload: onlineUsers,
+        });
+    } catch (error: any) {
+        console.log(error);
+        dispatch<any>(openAlert( error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message)
+        );
+    }
+};
+
+  export const setFriends =
+    (friends: any) => async (dispatch: Dispatch<Action>) => {
+      try {
+        dispatch<any>({
+          type: ActionType.SET_FRIENDS,
+          payload: friends,
+        });
+      } catch (error: any) {
+        console.log(error);
+        openAlert(
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+        );
+      }
+    };
+
 export const acceptFriendsInvitation =
   (id: string) => async (dispatch: Dispatch<Action>) => {
     try {

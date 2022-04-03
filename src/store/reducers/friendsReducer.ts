@@ -3,7 +3,7 @@ import { ActionType } from "../actionTypes";
 const initialState = {
   friends: [],
   pendingFriendsInvitations: [],
-  onLineUsers: [],
+  onlineUsers: [],
 };
 
 interface Action {
@@ -23,7 +23,7 @@ export const friendsReducer = (state = initialState, action: Action) => {
       return { ...state, friends: action.payload };
 
     case ActionType.SET_ONLINE_USERS:
-      return { ...state, onLineUsers: action.payload };
+      return { ...state, onlineUsers: action.payload };
 
     default:
       return state;
