@@ -34,8 +34,6 @@ export const sendFriendInvitation =
 
 export const setPendingFriendsInvitation =
   (friendsInvitation: any) => async (dispatch: Dispatch<Action>) => {
-      console.log(`setPendingFriendsInvitation`, friendsInvitation);
-
     try {
       dispatch<any>({
         type: ActionType.SET_PENDING_FRIENDS_INVITATIONS,
@@ -47,6 +45,44 @@ export const setPendingFriendsInvitation =
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message
+      );
+    }
+  };
+
+export const acceptFriendsInvitation =
+  (id: string) => async (dispatch: Dispatch<Action>) => {
+    try {
+      const { data } = await apiClient.post("/friendInvitation/accept", {
+        id,
+      });
+
+      dispatch<any>(openAlert(data));
+    } catch (error: any) {
+      checkStatus(error);
+      openAlert(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      );
+    }
+  };
+
+export const rejectFriendsInvitation =
+  (id: string) => async (dispatch: Dispatch<Action>) => {
+    try {
+      const { data } = await apiClient.post("/friendInvitation/reject", {
+        id,
+      });
+
+      dispatch<any>(openAlert(data));
+    } catch (error: any) {
+      checkStatus(error);
+      dispatch<any>(
+        openAlert(
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+        )
       );
     }
   };

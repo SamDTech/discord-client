@@ -2,10 +2,17 @@ import { Box, Tooltip, Typography } from "@mui/material";
 import React, { useState } from "react";
 import Avartar from "./Avartar";
 import InvitationDecisionsButton from "./InvitationDecisionsButton";
+import { useDispatch } from "react-redux";
+import {
+  acceptFriendsInvitation,
+  rejectFriendsInvitation,
+} from "../store/actionCreators/friendActions";
+import { idText } from "typescript";
 
 interface IPendingInvitationsListItemProps {
-  id: number;
+  _id: string;
   senderId: {
+    _id: string;
     username: string;
     email: string;
   };
@@ -13,25 +20,24 @@ interface IPendingInvitationsListItemProps {
 
 const PendingInvitationsListItem: React.FC<{
   invitation: IPendingInvitationsListItemProps;
-  acceptFriendInvitation: (id: number) => void;
-  rejectFriendInvitation: (id: number) => void;
 }> = ({
   invitation: {
-    id,
+    _id,
+
     senderId: { email, username },
   },
-  acceptFriendInvitation,
-  rejectFriendInvitation,
 }) => {
   const [buttonsDisabled, setButtonsDisabled] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleAcceptFriendInvitation = () => {
-    acceptFriendInvitation(id);
+    dispatch(acceptFriendsInvitation(_id));
     setButtonsDisabled(true);
   };
 
   const handleRejectFriendInvitation = () => {
-    rejectFriendInvitation(id);
+    dispatch(rejectFriendsInvitation(_id));
     setButtonsDisabled(true);
   };
 
@@ -70,6 +76,7 @@ const PendingInvitationsListItem: React.FC<{
             acceptInvitationHandler={handleAcceptFriendInvitation}
             rejectInvitationHandler={handleRejectFriendInvitation}
           />
+         
         </Box>
       </div>
     </Tooltip>

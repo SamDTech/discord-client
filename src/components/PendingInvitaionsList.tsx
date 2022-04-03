@@ -18,18 +18,14 @@ const PendingInvitaionsList = () => {
     (state: RootState) => state.friends
   );
 
-  const handleAcceptFriendInvitation = (id: number) => {};
-
-  const handleRejectFriendInvitation = (id: number) => {};
   return (
     <MainContainer>
       {pendingFriendsInvitations.map((invitaion: any) => {
         return (
           <PendingInvitationsListItem
-            key={invitaion.id}
+            key={invitaion._id}
             invitation={invitaion}
-            acceptFriendInvitation={handleAcceptFriendInvitation}
-            rejectFriendInvitation={handleRejectFriendInvitation}
+           
           />
         );
       })}
