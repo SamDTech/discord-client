@@ -18,6 +18,8 @@ export const connectWithSocketServer = (user: any) => {
   });
 
   socket.on("friendsInvitations", (data: any) => {
+    const { pendingInvitations } = data;
+    console.log("pendingInvitations", pendingInvitations);
     setPendingFriendsInvitation(data);
   });
 };
