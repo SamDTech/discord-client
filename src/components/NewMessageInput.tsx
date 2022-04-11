@@ -11,8 +11,8 @@ const MainContainer = styled("div")({
 });
 
 const Input = styled("input")({
-  width: "100%",
-  height: "98%",
+  width: "98%",
+  height: "44px",
   border: "none",
   fontSize: "14px",
   padding: "0 10px",
@@ -50,7 +50,7 @@ const NewMessageInput = () => {
   return (
     <MainContainer>
       <Input
-        placeholder={`Write message to ${chosenChatDetails.name}`}
+        placeholder={`Write a message to ${chosenChatDetails.username}`}
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={handleKeyPressed}
