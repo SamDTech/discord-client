@@ -6,9 +6,11 @@ import {
 import { io } from "socket.io-client";
 import store from "../store/store";
 
+let socket: any;
+
 export const connectWithSocketServer = (user: any) => {
   console.log("user", user);
-  const socket = io("http://localhost:4000", {
+  socket = io("http://localhost:4000", {
     withCredentials: true,
     auth: {
       token: user?.token,
@@ -39,7 +41,11 @@ export const connectWithSocketServer = (user: any) => {
 
     console.log("online users", onlineUsers);
 
-
     store.dispatch<any>(setOnlineUsers(onlineUsers));
   });
+};
+
+export const sendDirectMessage = (data: any) => {
+  console.log("the data", data);
+  socket.emit("directMessage", data);
 };

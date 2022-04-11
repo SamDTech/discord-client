@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { styled } from "@mui/system";
+import { sendDirectMessage } from "../realtimeCommunication/socketConnection";
 
 const MainContainer = styled("div")({
   display: "flex",
@@ -37,12 +38,11 @@ const NewMessageInput = () => {
 
   const handleSendMessage = () => {
     if (message.trim() !== "") {
-      const messageObject = {
-        message: message,
-        sender: "me",
-        timestamp: new Date().toLocaleString(),
-      };
-      chosenChatDetails.messages.push(messageObject);
+      sendDirectMessage({
+        receiverUserId: chosenChatDetails._id,
+        content: message,
+      });
+
       setMessage("");
     }
   };
