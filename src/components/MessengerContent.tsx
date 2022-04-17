@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import React, { useEffect } from "react";
+import { getDirectChatHistory } from "../realtimeCommunication/socketConnection";
 import Messages from "./Messages";
 import NewMessageInput from "./NewMessageInput";
 
@@ -19,6 +20,9 @@ interface IMessengerProps {
 const MessengerContent: React.FC<IMessengerProps> = ({ chosenChat }) => {
   useEffect(() => {
     // TODO: fetching chat history for the chosen chat
+    getDirectChatHistory({
+      receiverUserId: chosenChat._id,
+    })
   }, [chosenChat]);
 
   return (
