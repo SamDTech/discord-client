@@ -7,7 +7,7 @@ interface IMessageProps {
   _id: string;
   content: string;
   sameAuthor: boolean;
-  author: {
+  authorId: {
     username: string;
   };
   date: string;
@@ -43,9 +43,11 @@ const SameAuthorMessageText = styled("span")({
   marginLeft: "70px",
 });
 
-const Message: React.FC<{ message: IMessageProps }> = ({
-  message: { _id, content, sameAuthor, author, date, sameDay },
-}) => {
+const Message: React.FC<{
+  message: IMessageProps;
+  sameAuthor: boolean;
+  date: string;
+}> = ({ message: { _id, content, authorId, sameDay }, sameAuthor, date }) => {
   if (sameAuthor && sameDay) {
     return (
       <SameAuthorMessageContent>
@@ -56,7 +58,7 @@ const Message: React.FC<{ message: IMessageProps }> = ({
   return (
     <MainContainer>
       <AvatarContainer>
-        <Avartar username={author.username} />
+        <Avartar username={authorId.username} />
       </AvatarContainer>
       <MessageContainer>
         <Typography
@@ -65,7 +67,7 @@ const Message: React.FC<{ message: IMessageProps }> = ({
             color: "#fff",
           }}
         >
-          {author.username}{" "}
+          {authorId.username}{" "}
           <span style={{ fontSize: "12px", color: "#72767d" }}>{date}</span>
         </Typography>
         <MessageContent>{content}</MessageContent>

@@ -5,6 +5,7 @@ import {
 } from "./../store/actionCreators/friendActions";
 import { io } from "socket.io-client";
 import store from "../store/store";
+import { updateChatHistoryIfActive } from "../utils/chatUtils";
 
 let socket: any;
 
@@ -46,7 +47,14 @@ export const connectWithSocketServer = (user: any) => {
 
   socket.on("directChatHistory", (data: any) => {
     console.log("chat  history came", data);
-    const { receiverUserId, content } = data;
+    const { participants, messages } = data;
+
+
+
+    updateChatHistoryIfActive({
+      participants,
+      messages,
+    });
   });
 };
 
