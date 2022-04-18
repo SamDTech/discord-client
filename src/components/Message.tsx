@@ -11,7 +11,7 @@ interface IMessageProps {
     username: string;
   };
   date: string;
-  sameDay: boolean;
+
 }
 
 const MainContainer = styled("div")({
@@ -46,8 +46,9 @@ const SameAuthorMessageText = styled("span")({
 const Message: React.FC<{
   message: IMessageProps;
   sameAuthor: boolean;
+  sameDay: boolean;
   date: string;
-}> = ({ message: { _id, content, authorId, sameDay }, sameAuthor, date }) => {
+}> = ({ message: { _id, content, authorId,  }, sameAuthor, date,  sameDay }) => {
   if (sameAuthor && sameDay) {
     return (
       <SameAuthorMessageContent>

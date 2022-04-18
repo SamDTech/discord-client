@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers";
 import DUMMY_MESSAGES from "../DUMMYDATA";
 import Message from "./Message";
+import DateSeparator from "./DateSeparator";
 
 const MainContainer = styled("div")({
   display: "flex",
@@ -38,27 +39,44 @@ const Messages = () => {
   return (
     <MainContainer>
       <MessageHeader name={chosenChatDetails?.username} />
-      {messages && messages.map((message: any, index: number) => {
-        const sameAuthor =
-          index > 0 &&
-          messages[index].authorId._id === messages[index - 1].authorId._id;
+      {messages &&
+        messages.map((message: any, index: number) => {
+          const sameAuthor =
+            index > 0 &&
+            messages[index].authorId._id === messages[index - 1].authorId._id;
 
-        const sameDay =
-          index > 0 &&
-          convertDateToReadable(new Date(message.date), "dd/mm/yy") ===
-            convertDateToReadable(
-              new Date(messages[index - 1].date),
-              "dd/mm/yy"
-            );
-        return (
-          <Message
-            key={message._id}
-            message={message}
-            date={convertDateToReadable(new Date(message.date), "dd/mm/yy")}
-            sameAuthor={sameAuthor}
-          />
-        );
-      })}
+          const sameDay =
+            index > 0 &&
+            convertDateToReadable(new Date(message.date), "dd/mm/yy") ===
+              convertDateToReadable(
+                new Date(messages[index - 1].date),
+                "dd/mm/yy"
+              );
+          return (
+            <div
+              key={message._id}
+              style={{
+                width: "97%",
+              }}
+            >
+              {(!sameDay || index === 1) && (
+                <DateSeparator
+                  date={convertDateToReadable(
+                    new Date(message.date),
+                    "dd/mm/yy"
+                  )}
+                />
+              )}
+
+              <Message
+                message={message}
+                date={convertDateToReadable(new Date(message.date), "dd/mm/yy")}
+                sameDay={sameDay}
+                sameAuthor={sameAuthor}
+              />
+            </div>
+          );
+        })}
     </MainContainer>
   );
 };
